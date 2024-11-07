@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Bancada de Inspeção</title>
+	<link rel="stylesheet" href="src/styles/styles.css">
+</head>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.1.0"></script>
+<body>
+	<div id="container">
+		<div class="tab-buttons">
+			<button class="tab-btn active" content-id="orbital610">
+				Orbital 610
+			</button>
+
+			<button class="tab-btn" content-id="orbital810">
+				Orbital 810
+			</button>
+
+			<button class="tab-btn" content-id="orbital870">
+				Orbital 870
+			</button>
+
+			<button class="tab-btn" content-id="orbital1000">
+				Orbital 1000
+			</button>
+
+			<button class="tab-btn" content-id="configuracoes">
+				Configurações
+			</button>
+
+			<button class="tab-btn" content-id="calibracao">
+				Calibração
+			</button>
+
+			<button class="tab-btn" content-id="login">
+				Login
+			</button>
+
+		</div>
+
+		<div class="tab-contents">
+			<div class="content show" id="orbital610">
+				<div id="grafico-container">
+					<canvas id="myLineChart"></canvas>
+				</div>
+				<div class="infos">
+					<h1 class="content-tittle">
+						Bancada de Inspeção
+					</h1>
+					<br></br>
+					<p class="content-description">
+						Seja bem-vindo à bancada de inspeção. Aqui você poderá realizar a inspeção de peças de forma rápida e eficiente.
+					</p>
+					<br></br>
+					<p>
+						Para começar, clique no botão abaixo.
+					</p>
+					<br></br>
+					<button class="btn-inspection" id="btn-start-inspection1" disabled>
+						Iniciar inspeção
+					</button>
+				</div>
+				<div class="checkposition">
+					<input type="checkbox" id="sensor1" name="sensor1" value="sensor1">
+					<label for="sensor1">Sensor 1</label>
+					<br></br>
+					<input type="checkbox" id="sensor2" name="sensor2" value="sensor2">
+					<label for="sensor2">Sensor 2</label>
+					<br></br>
+					<input type="checkbox" id="sensor3" name="sensor3" value="sensor3">
+					<label for="sensor3">Sensor 3</label>
+					<br></br>
+					<input type="checkbox" id="sensor4" name="sensor4" value="sensor4">
+					<label for="sensor4">Sensor 4</label>
+					<br></br>
+				</div>
+			</div>
+			<div class="content" id="orbital810">
+				<img src="src/img/services.svg" class="content-img" alt="home image">
+				<div class="infos">
+					<br></br>
+					<h1 class="content-tittle">Bancada de Inspeção</h1>
+					<br></br>
+					<p class="content-description">
+						Seja bem-vindo à bancada de inspeção. Aqui você poderá realizar a inspeção de peças de forma rápida e eficiente.
+					</p>
+					<br></br>
+					<p>
+						Para começar, clique no botão abaixo.
+					</p>
+					<br></br>
+					<button class="btn-inspection" id="btn-start-inspection2" disabled>
+						Iniciar inspeção
+					</button>
+				</div>
+				<div class="checkposition">
+					<input type="checkbox" id="sensor5" name="sensor5" value="sensor5">
+					<label for="sensor5">Sensor 5</label>
+					<br></br>
+					<input type="checkbox" id="sensor6" name="sensor6" value="sensor6">
+					<label for="sensor6">Sensor 6</label>
+					<br></br>
+					<input type="checkbox" id="sensor7" name="sensor7" value="sensor7">
+					<label for="sensor7">Sensor 7</label>
+					<br></br>
+					<input type="checkbox" id="sensor8" name="sensor8" value="sensor8">
+					<label for="sensor8">Sensor 8</label>
+					<br></br>
+				</div>
+			</div>
+			<div class="content" id="orbital870">
+				<img src="src/img/graficos.svg" class="content-img" alt="home image">
+				<div class="infos">
+					<h1 class="content-tittle">Bancada de Inspeção</h1>
+					<br></br>
+					<p class="content-description">
+						Seja bem-vindo à bancada de inspeção. Aqui você poderá realizar a inspeção de peças de forma rápida e eficiente.
+					</p>
+					<br></br>
+					<p>
+						Para começar, clique no botão abaixo.
+					</p>
+					<br></br>
+					<button class="btn-inspection" id="btn-start-inspection3" disabled>
+						Iniciar inspeção
+					</button>
+				</div>
+				<div class="checkposition">
+					<input type="checkbox" id="sensor9" name="sensor9" value="sensor9">
+					<label for="sensor9">Sensor 9</label>
+					<br></br>
+					<input type="checkbox" id="sensor10" name="sensor10" value="sensor10">
+					<label for="sensor10">Sensor 10</label>
+					<br></br>
+					<input type="checkbox" id="sensor11" name="sensor11" value="sensor11">
+					<label for="sensor11">Sensor 11</label>
+					<br></br>
+					<input type="checkbox" id="sensor12" name="sensor12" value="sensor12">
+					<label for="sensor12">Sensor 12</label>
+					<br></br>
+				</div>
+			</div>
+			<div class="content" id="orbital1000">
+				<img src="src/img/orbital1000.png" class="content-img" alt="home image">
+				<br></br>
+				<div class="infos">
+					<h1 class="content-tittle">
+						Bancada de Inspeção
+					</h1>
+					<br></br>
+					<p class="content-description">
+						Seja bem-vindo à bancada de inspeção. Aqui você poderá realizar a inspeção de peças de forma rápida e eficiente.
+					</p>
+					<br></br>
+					<p>
+						Para começar, clique no botão abaixo.
+					</p>
+					<br></br>
+					<button class="btn-inspection" id="btn-start-inspection4" disabled>
+						Iniciar inspeção
+					</button>
+				</div>
+				<div class="checkposition">
+					<input type="checkbox" id="sensor13" name="sensor13" value="sensor13">
+					<label for="sensor13">Sensor 13</label>
+					<br></br>
+					<input type="checkbox" id="sensor14" name="sensor14" value="sensor14">
+					<label for="sensor14">Sensor 14</label>
+					<br></br>
+					<input type="checkbox" id="sensor15" name="sensor15" value="sensor15">
+					<label for="sensor15">Sensor 15</label>
+					<br></br>
+					<input type="checkbox" id="sensor16" name="sensor16" value="sensor16">
+					<label for="sensor16">Sensor 16</label>
+					<br></br>
+				</div>
+			</div>
+			<div class="content" id="configuracoes">
+				<img src="src/img/orbital1000.png" class="content-img" alt="home image">
+				<br></br>
+				<div class="infos">
+					<h1 class="content-tittle">
+						Bancada de Inspeção
+					</h1>
+					<br></br>
+					<p class="content-description">
+						Seja bem-vindo à bancada de inspeção. Aqui você poderá realizar a inspeção de peças de forma rápida e eficiente.
+					</p>
+					<br></br>
+					<p>
+						Para começar, clique no botão abaixo.
+					</p>
+					<br></br>
+					<button class="btn-inspection" id="btn-start-inspection5" disabled>
+						Iniciar inspeção
+					</button>
+				</div>
+				<div class="checkposition">
+					<input type="checkbox" id="sensor17" name="sensor17" value="sensor17">
+					<label for="sensor17">Sensor 17</label>
+					<br></br>
+					<input type="checkbox" id="sensor18" name="sensor18" value="sensor18">
+					<label for="sensor18">Sensor 18</label>
+					<br></br>
+					<input type="checkbox" id="sensor19" name="sensor19" value="sensor19">
+					<label for="sensor19">Sensor 19</label>
+					<br></br>
+					<input type="checkbox" id="sensor20" name="sensor20" value="sensor20">
+					<label for="sensor20">Sensor 20</label>
+					<br></br>
+				</div>
+			</div>
+			<div class="content" id="calibracao">
+				<img src="src/img/orbital1000.png" class="content-img" alt="home image">
+				<br></br>
+				<div class="infos">
+					<h1 class="content-tittle">
+						Bancada de Inspeção
+					</h1>
+					<br></br>
+					<p class="content-description">
+						Seja bem-vindo à bancada de inspeção. Aqui você poderá realizar a inspeção de peças de forma rápida e eficiente.
+					</p>
+					<br></br>
+					<p>
+						Para começar, clique no botão abaixo.
+					</p>
+					<br></br>
+					<button class="btn-inspection" id="btn-start-inspection6" disabled>
+						Iniciar inspeção
+					</button>
+				</div>
+				<div class="checkposition">
+					<input type="checkbox" id="sensor21" name="sensor21" value="sensor21">
+					<label for="sensor21">Sensor 21</label>
+					<br></br>
+					<input type="checkbox" id="sensor22" name="sensor22" value="sensor22">
+					<label for="sensor22">Sensor 22</label>
+					<br></br>
+					<input type="checkbox" id="sensor23" name="sensor23" value="sensor23">
+					<label for="sensor23">Sensor 23</label>
+					<br></br>
+					<input type="checkbox" id="sensor24" name="sensor24" value="sensor24">
+					<label for="sensor24">Sensor 24</label>
+					<br></br>
+				</div>
+			</div>
+			<div class="content" id="login">
+				<img src="src/img/orbital1000.png" class="content-img" alt="home image">
+				<br></br>
+				<div class="infos">
+					<h1 class="content-tittle">
+						Bancada de Inspeção
+					</h1>
+					<br></br>
+					<p class="content-description">
+						Seja bem-vindo à bancada de inspeção. Aqui você poderá realizar a inspeção de peças de forma rápida e eficiente.
+					</p>
+					<br></br>
+					<p>
+						Para começar, clique no botão abaixo.
+					</p>
+					<br></br>
+					<button class="btn-inspection" id="btn-start-inspection7" disabled>
+						Iniciar inspeção
+					</button>
+				</div>
+				<div class="checkposition">
+					<input type="checkbox" id="sensor25" name="sensor25" value="sensor25">
+					<label for="sensor25">Sensor 25</label>
+					<br></br>
+					<input type="checkbox" id="sensor26" name="sensor26" value="sensor26">
+					<label for="sensor26">Sensor 26</label>
+					<br></br>
+					<input type="checkbox" id="sensor27" name="sensor27" value="sensor27">
+					<label for="sensor27">Sensor 27</label>
+					<br></br>
+					<input type="checkbox" id="sensor28" name="sensor28" value="sensor28">
+					<label for="sensor28">Sensor 28</label>
+					<br></br>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="src/javascript/script.js"></script>
+</body>
+</html>
