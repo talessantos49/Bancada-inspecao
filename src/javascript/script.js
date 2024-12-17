@@ -19,66 +19,178 @@ const currentActiveTab = document.querySelector('.tab-btn.active');
 tabClicked(currentActiveTab);
 
 //ÁREA DOS GRAFICOS E ATUALIZAÇÕES
+const ctxLine = document.getElementById('myLineChart').getContext('2d');
+const ctxRadar = document.getElementById('myChart').getContext('2d');
 
+// Elemento para exibir o valor atual
+const valorAtualElemento = document.getElementById('valor-atual');
 
-const limitValue = 50; // Valor da linha pontilhada e limite
-const ctx = document.getElementById('myLineChart').getContext('2d');
-const myLineChart = new Chart(ctx, {
-	type: 'line',
-	data: {
-		labels: [], // Inicialmente vazio
-		datasets: [{
-			label: 'Abaixo do Limite',
-			data: [], // Inicialmente vazio
-			borderColor: 'rgba(75, 192, 192, 1)',
-			tension: 0.3,
-			borderWidth: 3,
-			fill: false,
-			segment: {
-				borderColor: (ctx) => ctx.p1.parsed.y > limitValue ? 'red' : 'rgba(75, 192, 192, 1)',
-			}
-		}
-	]
-},
-options: {
-	responsive: true,
-	scales: {
-		x: { title: { display: true, text: 'Tempo' } },
-		y: { title: { display: true, text: 'Valor' } }
-	},
-	plugins: {
-		annotation:{
-			annotations:{
-				linhaLimite:{
-						type: 'line',
-						yMin: limitValue,
-						yMax: limitValue,
-						borderColor: 'rgba(0,0,0,0.5)',
-						borderWidth: 2,
-						borderDash: [10,5], //Linha Pontilhada
-						label:{
-							display: true,
-							content: 'Limite',
-							position: 'end'
-						}
-					}
-				}
-			}
-		}
-	}
-});
-function addData(label, data) {
-myLineChart.data.labels.push(label);
-myLineChart.data.datasets[0].data.push(data);
-myLineChart.update(); // Atualiza o gráfico com o novo dado
+// Dados compartilhados entre os dois gráficos
+const blueData = [];
+let prev = 100;
+for (let i = 0; i < 360; i++) {
+    prev += 5 - Math.random() * 10;
+    blueData.push(prev);
 }
 
-// Exemplo de uso com intervalo para simular dados chegando
-let contador = 0;
-setInterval(() => {
-	addData(`T${contador}`, Math.random() * 100); // Adiciona ponto aleatório
-	contador++;
-}, 1000); // Adiciona ponto a cada segundo
+const redData = [];
+let prev2 = 80;
+for (let i = 0; i < 360; i++) {
+    prev2 += 5 - Math.random() * 10;
+    redData.push(prev2);
+}
+
+// Gráfico Linear
+const myLineChart = new Chart(ctxLine, {
+    type: 'line',
+    data: {
+        labels: Array.from({ length: 360 }, (_, i) => `T${i + 1}`),
+        datasets: [
+            {
+                label: 'Linha Azul',
+                data: Array(360).fill(null),
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 3,
+                pointRadius: 0,
+                tension: 0.4,
+                fill: false,
+            },
+            {
+                label: 'Linha Vermelha',
+                data: Array(360).fill(null),
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 3,
+                pointRadius: 0,
+                tension: 0.4,
+                fill: false,
+            }
+        ]
+    },
+    options: {
+        responsive: true,
+        animation: { duration: 0 },
+        scales: {
+            x: { title: { display: true, text: 'Tempo' } },
+            y: { title: { display: true, text: 'Valor' }, min: 0, max: 300 }
+        },
+        plugins: {
+            legend: { display: true }
+        }
+    }
+});
+
+// Gráfico Radar
+const radarChart = new Chart(ctxRadar, {
+    type: 'radar',
+    data: {
+        labels: Array.from({ length: 360 }, (_, i) => `${i}°`),
+        datasets: [
+            {
+                label: 'Linha Azul',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 2,
+                radius: 0,
+                data: [],
+                fill: false,
+                tension: 0.4,
+            },
+            {
+                label: 'Linha Vermelha',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 2,
+                radius: 0,
+                data: [],
+                fill: false,
+                tension: 0.4,
+            }
+        ]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        animation: { duration: 0 },
+        scales: {
+            r: {
+                min: 0,
+                max: 300,
+                beginAtZero: true,
+                ticks: { display: false },
+                grid: { circular: true },
+                angleLines: { display: false },
+                pointLabels: { display: false },
+            },
+        },
+        elements: { line: { tension: 0.4 } },
+        plugins: { legend: { display: false } },
+    }
+});
+
+// Função para atualizar uma linha nos dois gráficos e exibir o valor atual
+function atualizarLinha(dados, datasetIndex, callback) {
+    let index = 0;
+
+    const interval = setInterval(() => {
+        if (index < dados.length) {
+            const valorAtual = dados[index];
+
+            // Atualiza o gráfico linear
+            myLineChart.data.datasets[datasetIndex].data[index] = valorAtual;
+
+            // Atualiza o gráfico radar
+            radarChart.data.datasets[datasetIndex].data[index] = valorAtual;
+
+            // Atualiza o valor na tela
+            valorAtualElemento.innerText = valorAtual.toFixed(2);
+
+            // Atualiza os gráficos
+            myLineChart.update();
+            radarChart.update();
+
+            index++;
+        } else {
+            clearInterval(interval);
+            if (callback) callback(); // Inicia a próxima linha ao finalizar
+        }
+    }, 10); // Intervalo de 10ms entre cada ponto
+}
+
+// // Inicia a atualização: Linha Azul -> Linha Vermelha
+// atualizarLinha(blueData, 0, () => {
+//     console.log('Linha azul concluída. Iniciando linha vermelha...');
+//     atualizarLinha(redData, 1);
+// });
+
+// Captura os elementos dos sensores e do botão iniciar
+const sensores = [
+    document.getElementById('sensor1'),
+    document.getElementById('sensor2'),
+    document.getElementById('sensor3'),
+    document.getElementById('sensor4')
+];
+const botaoIniciar = document.getElementById('btn-start-inspection1');
+
+// Verifica se todos os sensores estão marcados
+function verificarSensores() {
+    const todosAtivos = sensores.every(sensor => sensor.checked);
+    botaoIniciar.disabled = !todosAtivos; // Habilita ou desabilita o botão
+}
+
+// Adiciona um evento a cada sensor para verificar o estado
+sensores.forEach(sensor => {
+    sensor.addEventListener('change', verificarSensores);
+});
+
+// Evento para iniciar a inspeção e gráficos ao clicar no botão
+botaoIniciar.addEventListener('click', () => {
+    console.log('Iniciando inspeção e leitura dos gráficos...');
+
+    // Chama as funções de leitura dos gráficos
+    atualizarLinha(blueData, 0, () => {
+        console.log('Linha azul concluída. Iniciando linha vermelha...');
+        atualizarLinha(redData, 1);
+    });
+});
+
 
 //----------------------------------------------------------------------------------------
 // Checkbox e checagens de acionamento
@@ -179,3 +291,4 @@ function verificarCheckboxesLogin(){
 checkboxesLogin.forEach(checkbox => checkbox.addEventListener('change', verificarCheckboxesLogin));
 
 //----------------------------------------------------------------------------------------
+

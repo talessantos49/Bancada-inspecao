@@ -65,6 +65,52 @@ body {
 	height: 250px;
 }
 
+/*.container-config{
+	text-align: left;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+*/
+
+.chart-container-circle {
+	position: relative;
+	width: 100%; /* Largura total do contêiner */
+	height: 400px; /* Altura padrão, pode ser ajustada */
+	max-width: 600px; /* Limite de largura máxima */
+	margin: auto; /* Centraliza o gráfico */
+}
+
+.section {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	gap: 10px;
+}
+
+.collum {
+	width: 50%; /* Define largura da coluna do texto */
+	font-size: 16px;
+	color: #333;
+	text-align: right;
+}
+
+label {
+	width: 40%; /* Define largura da coluna do texto */
+	font-size: 16px;
+	color: #333;
+	text-align: right;
+}
+
+input, textarea {
+	width: 60%; /* Define largura da coluna do campo de entrada */
+	padding: 10px;
+	font-size: 14px;
+	border: 1px solid #ff0000;
+	border-radius: 4px;
+	outline: none;
+}
+
 .checkposition{
 	padding-top: 5%;
 	width: 200px;
@@ -89,8 +135,8 @@ body {
 
 /* ÁREA DOS GRAFICOS */
 
-#grafico-container {
-	width: 50%;
+#grafico-container-line {
+	width: 600px;
 	height: 300px;
 /*	width: 80%; /* Ajuste conforme necessário */
 /*	height: 400px;

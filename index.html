@@ -44,8 +44,14 @@
 
 		<div class="tab-contents">
 			<div class="content show" id="orbital610">
-				<div id="grafico-container">
-					<canvas id="myLineChart"></canvas>
+				<div class="chart-container-circle">
+					<canvas id="myChart"></canvas>
+					<div id="grafico-container-line">
+						<canvas id="myLineChart"></canvas>
+					</div>
+				</div>
+				<div>
+					<p>Valor Atual: <span id="valor-atual">0</span></p>
 				</div>
 				<div class="infos">
 					<h1 class="content-tittle">
@@ -182,15 +188,54 @@
 			<div class="content" id="configuracoes">
 				<img src="src/img/orbital1000.png" class="content-img" alt="home image">
 				<br></br>
-				<div class="infos">
+				<div class="container-config">
 					<h1 class="content-tittle">
-						Bancada de Inspeção
+						Tela de Configurações
 					</h1>
-					<br></br>
-					<p class="content-description">
-						Seja bem-vindo à bancada de inspeção. Aqui você poderá realizar a inspeção de peças de forma rápida e eficiente.
-					</p>
-					<br></br>
+					<div class="collum">
+						<!-- Primeira sequência -->
+						<div class="section">
+							<p>Digite seu nome:</p>
+							<input type="text" placeholder="Seu nome aqui">
+						</div>
+						<!-- Segunda sequência -->
+						<div class="section">
+							<label for="fone">Digite seu phone:</label>
+							<input type="email" placeholder="Seu e-mail aqui">
+						</div>
+						<!-- Terceira sequência -->
+						<div class="section">
+							<label for="email">Digite seu email:</label>
+							<input type="text" placeholder="Seu nome aqui">
+						</div>
+						<!-- Quarta sequência -->
+						<div class="section">
+							<label for="name">Digite seu nome:</label>
+							<input type="text" placeholder="Seu nome aqui">
+						</div>
+					</div>
+					<div>
+						<!-- Primeira sequência -->
+						<div class="section">
+							<p>Digite seu nome:</p>
+							<input type="text" placeholder="Seu nome aqui">
+						</div>
+						<!-- Segunda sequência -->
+						<div class="section">
+							<p>Digite seu e-mail:</p>
+							<input type="email" placeholder="Seu e-mail aqui">
+						</div>
+						<!-- Terceira sequência -->
+						<div class="section">
+							<p>Digite seu nome:</p>
+							<input type="text" placeholder="Seu nome aqui">
+						</div>
+						<!-- Quarta sequência -->
+						<div class="section">
+							<p>Digite seu nome:</p>
+							<input type="text" placeholder="Seu nome aqui">
+						</div>
+					</div>
 					<p>
 						Para começar, clique no botão abaixo.
 					</p>
@@ -198,20 +243,6 @@
 					<button class="btn-inspection" id="btn-start-inspection5" disabled>
 						Iniciar inspeção
 					</button>
-				</div>
-				<div class="checkposition">
-					<input type="checkbox" id="sensor17" name="sensor17" value="sensor17">
-					<label for="sensor17">Sensor 17</label>
-					<br></br>
-					<input type="checkbox" id="sensor18" name="sensor18" value="sensor18">
-					<label for="sensor18">Sensor 18</label>
-					<br></br>
-					<input type="checkbox" id="sensor19" name="sensor19" value="sensor19">
-					<label for="sensor19">Sensor 19</label>
-					<br></br>
-					<input type="checkbox" id="sensor20" name="sensor20" value="sensor20">
-					<label for="sensor20">Sensor 20</label>
-					<br></br>
 				</div>
 			</div>
 			<div class="content" id="calibracao">
