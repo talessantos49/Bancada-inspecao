@@ -5,45 +5,55 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Bancada de Inspeção</title>
+	<meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net/npm/chart.js https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.1.0"/>
 	<link rel="stylesheet" href="src/styles/styles.css">
 </head>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.1.0"></script>
 <body>
 	<div id="container">
-		<div class="tab-buttons">
-			<button class="tab-btn active" content-id="orbital610">
-				Orbital 610
-			</button>
-
-			<button class="tab-btn" content-id="orbital810">
-				Orbital 810
-			</button>
-
-			<button class="tab-btn" content-id="orbital870">
-				Orbital 870
-			</button>
-
-			<button class="tab-btn" content-id="orbital1000">
-				Orbital 1000
-			</button>
-
-			<button class="tab-btn" content-id="configuracoes">
-				Configurações
-			</button>
-
-			<button class="tab-btn" content-id="calibracao">
-				Calibração
-			</button>
-
-			<button class="tab-btn" content-id="login">
-				Login
-			</button>
-
+		<button class="tab-btn active" content-id="telaInicial">Tela Inicial</button>
+		<!-- <div class="tab-buttons">
+			<button class="tab-btn" content-id="orbital610">Orbital 610</button>
+			<button class="tab-btn" content-id="orbital810">Orbital 810</button>
+			<button class="tab-btn" content-id="orbital870">Orbital 870</button>
+			<button class="tab-btn" content-id="orbital1000">Orbital 1000</button>
+			<button class="tab-btn" content-id="configuracoes">Configurações</button>
+			<button class="tab-btn" content-id="calibracao">Calibração</button>
+			<button class="tab-btn" content-id="login">Login</button>
+		</div> -->
+		<!-- <div class="content-inicial" id="telaInicial"> -->
+		<div class="content-inicial" id="telaInicial">
+			<div class="infos">
+				<h1 class="content-tittle">Selecione o Tamanho da Faca:</h1>
+				<br />
+				<p>
+					Para começar, clique no botão abaixo.
+				</p>
+				<br />
+				<div class="button-container">
+					<button class="tab-buttons" data-target="orbital610">Orbital 610</button>
+					<button class="tab-buttons" data-target="orbital810">Orbital 810</button>
+					<button class="tab-buttons" data-target="orbital870">Orbital 870</button>
+					<button class="tab-buttons" data-target="orbital1000">Orbital 1000</button>
+					<button class="tab-buttons" data-target="configuracoes">Configurações</button>
+					<button class="tab-buttons" data-target="calibracao">Calibração</button>
+					<br />
+				</div>
+			</div>
 		</div>
-
-		<div class="tab-contents">
-			<div class="content show" id="orbital610">
+		<div class="tab-contents hidden" id="telasFuncionais">
+			<div class="tab-buttons">
+				<button class="tab-btn" content-id="orbital610"		data-target="orbital610"	>Orbital 610</button>
+				<button class="tab-btn" content-id="orbital810"		data-target="orbital810"	>Orbital 810</button>
+				<button class="tab-btn" content-id="orbital870"		data-target="orbital870"	>Orbital 870</button>
+				<button class="tab-btn" content-id="orbital1000"	data-target="orbital1000"	>Orbital 1000</button>
+				<button class="tab-btn" content-id="configuracoes"	data-target="configuracoes"	>Configurações</button>
+				<button class="tab-btn" content-id="calibracao"		data-target="calibracao"	>Calibração</button>
+				<button class="tab-btn" content-id="login"			data-target="login"			>Login</button>
+			</div>
+			<!-- <div class="content show" id="orbital610"> -->
+			<div class="content hidden" id="orbital610">
 				<div class="chart-container-circle">
 					<canvas id="myChart"></canvas>
 					<div id="grafico-container-line">
@@ -85,7 +95,7 @@
 					<br></br>
 				</div>
 			</div>
-			<div class="content" id="orbital810">
+			<div class="content hidden" id="orbital810">
 				<img src="src/img/services.svg" class="content-img" alt="home image">
 				<div class="infos">
 					<br></br>
@@ -118,7 +128,7 @@
 					<br></br>
 				</div>
 			</div>
-			<div class="content" id="orbital870">
+			<div class="content hidden" id="orbital870">
 				<img src="src/img/graficos.svg" class="content-img" alt="home image">
 				<div class="infos">
 					<h1 class="content-tittle">Bancada de Inspeção</h1>
@@ -150,7 +160,7 @@
 					<br></br>
 				</div>
 			</div>
-			<div class="content" id="orbital1000">
+			<div class="content hidden" id="orbital1000">
 				<img src="src/img/orbital1000.png" class="content-img" alt="home image">
 				<br></br>
 				<div class="infos">
@@ -185,67 +195,60 @@
 					<br></br>
 				</div>
 			</div>
-			<div class="content" id="configuracoes">
-				<img src="src/img/orbital1000.png" class="content-img" alt="home image">
-				<br></br>
+			<div class="content hidden" id="configuracoes">
+				<h1 class="content-title">Tela de Configurações</h1>
 				<div class="container-config">
-					<h1 class="content-tittle">
-						Tela de Configurações
-					</h1>
-					<div class="collum">
-						<!-- Primeira sequência -->
-						<div class="section">
-							<p>Digite seu nome:</p>
-							<input type="text" placeholder="Seu nome aqui">
+					<div class="columns">
+						<!-- Primeira coluna -->
+						<div class="column">
+							<div class="section">
+								<label for="nome">Resolução:</label>
+								<input type="text" id="nome" placeholder="Seu nome aqui">
+							</div>
+							<div class="section">
+								<label for="fone">Digite seu telefone:</label>
+								<input type="tel" id="fone" placeholder="Seu telefone aqui">
+							</div>
+							<div class="section">
+								<label for="email">Digite seu email:</label>
+								<input type="email" id="email" placeholder="Seu email aqui">
+							</div>
+							<div class="section">
+								<label for="posicao">Posição 1:</label>
+								<input type="text" id="posicao" placeholder="Sua posição aqui">
+							</div>
 						</div>
-						<!-- Segunda sequência -->
-						<div class="section">
-							<label for="fone">Digite seu phone:</label>
-							<input type="email" placeholder="Seu e-mail aqui">
-						</div>
-						<!-- Terceira sequência -->
-						<div class="section">
-							<label for="email">Digite seu email:</label>
-							<input type="text" placeholder="Seu nome aqui">
-						</div>
-						<!-- Quarta sequência -->
-						<div class="section">
-							<label for="name">Digite seu nome:</label>
-							<input type="text" placeholder="Seu nome aqui">
-						</div>
-					</div>
-					<div>
-						<!-- Primeira sequência -->
-						<div class="section">
-							<p>Digite seu nome:</p>
-							<input type="text" placeholder="Seu nome aqui">
-						</div>
-						<!-- Segunda sequência -->
-						<div class="section">
-							<p>Digite seu e-mail:</p>
-							<input type="email" placeholder="Seu e-mail aqui">
-						</div>
-						<!-- Terceira sequência -->
-						<div class="section">
-							<p>Digite seu nome:</p>
-							<input type="text" placeholder="Seu nome aqui">
-						</div>
-						<!-- Quarta sequência -->
-						<div class="section">
-							<p>Digite seu nome:</p>
-							<input type="text" placeholder="Seu nome aqui">
+			
+						<!-- Divisória -->
+						<div class="divider"></div>
+						<!-- Segunda coluna -->
+						<div class="column">
+							<div class="section">
+								<label for="config1">Configuração 1:</label>
+								<input type="text" id="config1" placeholder="Digite algo aqui">
+							</div>
+							<div class="section">
+								<label for="config2">Configuração 2:</label>
+								<input type="text" id="config2" placeholder="Digite algo aqui">
+							</div>
+							<div class="section">
+								<label for="config3">Configuração 3:</label>
+								<input type="text" id="config3" placeholder="Digite algo aqui">
+							</div>
+							<div class="section">
+								<label for="config4">Configuração 4:</label>
+								<input type="text" id="config4" placeholder="Digite algo aqui">
+							</div>
 						</div>
 					</div>
-					<p>
-						Para começar, clique no botão abaixo.
-					</p>
-					<br></br>
-					<button class="btn-inspection" id="btn-start-inspection5" disabled>
-						Iniciar inspeção
-					</button>
+					<!-- Botões -->
+					<div class="buttons">
+						<button class="btn" id="btn-save">Salvar Configurações</button>
+						<button class="btn" id="btn-back">Voltar</button>
+					</div>
 				</div>
 			</div>
-			<div class="content" id="calibracao">
+			<div class="content hidden" id="calibracao">
 				<img src="src/img/orbital1000.png" class="content-img" alt="home image">
 				<br></br>
 				<div class="infos">
@@ -280,7 +283,7 @@
 					<br></br>
 				</div>
 			</div>
-			<div class="content" id="login">
+			<div class="content hidden" id="login">
 				<img src="src/img/orbital1000.png" class="content-img" alt="home image">
 				<br></br>
 				<div class="infos">

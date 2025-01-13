@@ -6,7 +6,7 @@ const tabClicked = (tab) => {
 	tabs.forEach(tab => tab.classList.remove('active'));
 	tab.classList.add('active');
  
-	const contents = document.querySelectorAll('.content');
+	const contents = document.querySelectorAll('.content, .content-inicial');
 	contents.forEach(content => content.classList.remove('show'));
 
 	const contentId = tab.getAttribute('content-id');
@@ -18,6 +18,29 @@ const tabClicked = (tab) => {
 const currentActiveTab = document.querySelector('.tab-btn.active');
 tabClicked(currentActiveTab);
 
+// Tab de botões 
+
+const tabsButton = document.querySelectorAll('.tab-buttons');
+
+tabsButton.forEach(tabe => tabe.addEventListener('click', () => tabClickedBtn(tabe)));
+
+const tabClickedBtn = (tabe) => {
+	tabsButton.forEach(tabe => tabe.classList.remove('active'));
+	tabe.classList.add('active');
+ 
+	const contentsButton = document.querySelectorAll('.content-inicial');
+	contentsButton.forEach(contente => contente.classList.remove('show'));
+
+	const contentIde = tabe.getAttribute('content-id');
+	const contente = document.getElementById(contentIde);
+
+	// contente.classList.add('show');
+}
+
+// const currentActiveTabButton = document.querySelector('.tab-button.active');
+// tabClicked(currentActiveTabButton);
+
+
 //ÁREA DOS GRAFICOS E ATUALIZAÇÕES
 const ctxLine = document.getElementById('myLineChart').getContext('2d');
 const ctxRadar = document.getElementById('myChart').getContext('2d');
@@ -27,14 +50,14 @@ const valorAtualElemento = document.getElementById('valor-atual');
 
 // Dados compartilhados entre os dois gráficos
 const blueData = [];
-let prev = 100;
+let prev = 200;
 for (let i = 0; i < 360; i++) {
     prev += 5 - Math.random() * 10;
     blueData.push(prev);
 }
 
 const redData = [];
-let prev2 = 80;
+let prev2 = 180;
 for (let i = 0; i < 360; i++) {
     prev2 += 5 - Math.random() * 10;
     redData.push(prev2);
@@ -112,7 +135,7 @@ const radarChart = new Chart(ctxRadar, {
         scales: {
             r: {
                 min: 0,
-                max: 300,
+                max: 305,
                 beginAtZero: true,
                 ticks: { display: false },
                 grid: { circular: true },
@@ -153,12 +176,6 @@ function atualizarLinha(dados, datasetIndex, callback) {
         }
     }, 10); // Intervalo de 10ms entre cada ponto
 }
-
-// // Inicia a atualização: Linha Azul -> Linha Vermelha
-// atualizarLinha(blueData, 0, () => {
-//     console.log('Linha azul concluída. Iniciando linha vermelha...');
-//     atualizarLinha(redData, 1);
-// });
 
 // Captura os elementos dos sensores e do botão iniciar
 const sensores = [
@@ -272,11 +289,11 @@ function verificarCheckboxes1000(){
 }
 checkboxes1000.forEach(checkbox => checkbox.addEventListener('change', verificarCheckboxes1000));
 
-function verificarCheckboxesConfig(){
-	const todosMarcados = checkboxesConfig.every(checkbox => checkbox.checked);
-	botaoInspecao5.disabled = !todosMarcados; //habilita o botão se todos estiverem marcados
-}
-checkboxesConfig.forEach(checkbox => checkbox.addEventListener('change', verificarCheckboxesConfig));
+// function verificarCheckboxesConfig(){
+// 	const todosMarcados = checkboxesConfig.every(checkbox => checkbox.checked);
+// 	botaoInspecao5.disabled = !todosMarcados; //habilita o botão se todos estiverem marcados
+// }
+// checkboxesConfig.forEach(checkbox => checkbox.addEventListener('change', verificarCheckboxesConfig));
 
 function verificarCheckboxesCalib(){
 	const todosMarcados = checkboxesCalib.every(checkbox => checkbox.checked);
@@ -292,3 +309,50 @@ checkboxesLogin.forEach(checkbox => checkbox.addEventListener('change', verifica
 
 //----------------------------------------------------------------------------------------
 
+document.addEventListener("DOMContentLoaded", () => {
+    const buttons = document.querySelectorAll(".tab-buttons, tab-btn"); // Botões na tela inicial
+    const telaInicial = document.getElementById("telaInicial"); // Div inicial
+    const telasFuncionais = document.getElementById("telasFuncionais"); // Div das tabs
+    const tabs = document.querySelectorAll(".content, content-inicial"); // Todas as tabs
+
+    console.log(buttons); // Verificar se encontrou os botões
+
+    buttons.forEach(button => {
+        button.addEventListener("click", () => {
+            console.log(`Botão clicado: ${button.textContent}`);
+            const tabTarget = document.getElementById("telaInicial");
+            if (tabTarget) {
+                telaInicial.classList.add("hidden");
+            }
+        });
+    });
+
+    if (buttons && telaInicial && telasFuncionais && tabs) {
+        buttons.forEach(button => {
+            button.addEventListener("click", () => {
+                const targetId = button.getAttribute("data-target"); // ID da tab alvo
+                const targetTab = document.getElementById(targetId); // Elemento tab correspondente
+
+                if (targetTab) {
+                    // Oculta tela inicial e exibe as tabs funcionais
+                    telaInicial.classList.add("hidden");
+                    telasFuncionais.classList.remove("hidden");
+
+                    // Oculta todas as tabs
+                    tabs.forEach(tab => {
+                        tab.classList.add("hidden");
+                        tab.classList.remove("show");
+                    });
+
+                    // Exibe apenas a tab correspondente
+                    targetTab.classList.remove("hidden");
+                    targetTab.classList.add("show");
+                } else {
+                    console.error(`Tab com ID "${targetId}" não encontrada.`);
+                }
+            });
+        });
+    } else {
+        console.error("Alguns elementos essenciais não foram encontrados na página.");
+    }
+});
