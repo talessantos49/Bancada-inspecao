@@ -224,11 +224,9 @@ textarea {
 /* ÁREA DOS GRAFICOS */
 
 #grafico-container-line {
-	width: 600px;
-	height: 300px;
-/*	width: 80%; /* Ajuste conforme necessário */
-/*	height: 400px;
-/*	margin: 0 auto; /* Centraliza o contêiner na página */
+	width: 500px;
+	height: 200px;
+	background-color: #c7d2fe;
 }
 
 #myLineChart {
