@@ -1,0 +1,279 @@
+
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	background-color: black;
+	font-family: Arial, Helvetica, sans-serif;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+}
+
+#container {
+	background-color: white;
+	width: 1500px;
+	height: 800px;
+	padding: 10px;
+	border-radius: 8px;
+	box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+/* Container para os botões */
+.button-container {
+	display: grid;
+	grid-template-columns: 120px 120px;
+	grid-row: 2;
+	align-items: center;
+	justify-content: center;
+	gap: 1rem;
+}
+
+.tab-buttons{
+	padding: 12px;
+	display: flex;
+	border: none;
+	gap: 10px;
+	color: white;
+	background-color: rgb(37, 0, 247);
+	border-radius: 8px;
+	cursor: pointer;
+}
+
+.tab-buttons:hover{
+	background-color: rgb(39, 146, 12);
+	color:black;
+}
+
+.tab-btn {
+	width: 100%;
+	border: none;
+	color: white;
+	background-color : rgb(37, 0, 247);
+	border-radius : 8px 8px 8px 8px;
+	font-weight : 500;
+	padding: 8px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.hidden {
+    display: none;
+}
+.show {
+    display: block;
+}
+
+.tab-btn.active{
+	background-color: #c7d2fe;
+}
+
+.tab-btn:hover{
+	background-color: rgb(39, 146, 12);
+	color:black;
+}
+
+.content{
+	display:none;
+}
+
+.content.show{
+	display: flex;
+	gap:14px;
+	background-color: #c7d2fe;
+	border-radius: 0px 0px 8px 8px;
+	padding: 14px;
+	height: auto;
+	width: auto;
+}
+
+.content-inicial{
+	display:none;
+}
+
+.content-inicial.show{
+	display:grid;
+}
+
+.content-img{
+	width: 50%;
+	height: 250px;
+}
+
+/*.container-config{
+	text-align: left;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+*/
+.container-config {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 800px;
+    margin: auto;
+}
+
+.chart-container-circle {
+	position: relative;
+	width: 100%; /* Largura total do contêiner */
+	height: 400px; /* Altura padrão, pode ser ajustada */
+	max-width: 600px; /* Limite de largura máxima */
+	margin: auto; /* Centraliza o gráfico */
+}
+
+/* .section {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	gap: 10px;
+} */
+
+.divider {
+    width: 2px;
+    background-color: #ccc;
+    margin: 0 10px;
+}
+
+.section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+}
+
+.columns {
+    display: flex;
+    width: 100%;
+    gap: 20px;
+}
+
+.column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.collum {
+	width: 100%; /* Define largura da coluna do texto */
+	font-size: 16px;
+	color: #333;
+	text-align: right;
+}
+
+label {
+	width: 40%; /* Define largura da coluna do texto */
+	font-size: 16px;
+	color: #333;
+	text-align: right;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+textarea {
+	width: 60%; /* Define largura da coluna do campo de entrada */
+	padding: 10px;
+	font-size: 14px;
+	border: 1px solid #ff0000;
+	border-radius: 4px;
+	outline: none;
+}
+
+/* input, textarea {
+	width: 60%; /* Define largura da coluna do campo de entrada */
+	/* padding: 10px;
+	font-size: 14px;
+	border: 1px solid #ff0000;
+	border-radius: 4px;
+	outline: none;
+} */
+
+.checkposition{
+	padding-top: 5%;
+	width: 200px;
+}
+
+.btn-inspection{
+	background-color: rgb(37, 0, 247);
+	color: white;
+	border: none;
+	padding: 8px;
+	border-radius: 8px;
+	cursor: pointer;
+	width: 100%;
+	height: 50px;
+	padding-bottom: 2px;
+}
+.btn-inspection:disabled{
+	background-color: rgb(37, 0, 247,0.2);
+
+	cursor: not-allowed;
+}
+
+/* ÁREA DOS GRAFICOS */
+
+#grafico-container-line {
+	width: 600px;
+	height: 300px;
+/*	width: 80%; /* Ajuste conforme necessário */
+/*	height: 400px;
+/*	margin: 0 auto; /* Centraliza o contêiner na página */
+}
+
+#myLineChart {
+	width: 100%; /* Faz o canvas ocupar toda a largura do contêiner */
+	height: 100%; /* Faz o canvas ocupar toda a altura do contêiner */
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 20px;
+    gap: 10px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+/* Centraliza o conteúdo da tela inicial */
+.center-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+}
+
+/* Estilo do cabeçalho e texto */
+.center-container h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.center-container p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
