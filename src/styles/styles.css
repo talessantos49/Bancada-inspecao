@@ -15,7 +15,7 @@ body {
 }
 
 #container {
-	background-color: white;
+	background-color: rgb(228, 228, 228);
 	width: 1500px;
 	height: 800px;
 	padding: 10px;
@@ -69,7 +69,7 @@ body {
 }
 
 .tab-btn.active{
-	background-color: #c7d2fe;
+	background-color: rgb(228, 228, 228);
 }
 
 .tab-btn:hover{
@@ -84,7 +84,7 @@ body {
 .content.show{
 	display: flex;
 	gap:14px;
-	background-color: #c7d2fe;
+	background-color: rgb(228, 228, 228);
 	border-radius: 0px 0px 8px 8px;
 	padding: 14px;
 	height: auto;
@@ -226,7 +226,8 @@ textarea {
 #grafico-container-line {
 	width: 500px;
 	height: 200px;
-	background-color: #c7d2fe;
+	background-color: rgb(228, 228, 228);
+	/* background-color: #c7d2fe; */
 }
 
 #myLineChart {
@@ -274,4 +275,30 @@ textarea {
 .center-container p {
     font-size: 1.2rem;
     margin-bottom: 2rem;
+}
+
+.resultados {
+	display: flex;
+	flex-direction: row;
+	grid-template-rows: auto;
+	margin: auto;
+	padding: 15px;
+	align-items: center;
+	font-size: 1.5rem;
+	border: 1px solid black;
+	box-shadow: 10px 10px;
+	border-radius: 15px;
+}
+
+.resultados-valores {
+	margin:auto;
+	text-align: right;
+}
+
+.results-a {
+	background-color: #bbdafa;
+}
+
+.results-b {
+	background-color: #e0e0e0;
 }

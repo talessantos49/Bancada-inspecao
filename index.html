@@ -25,6 +25,27 @@
 		</div> -->
 		<!-- <div class="content-inicial" id="telaInicial"> -->
 		<div class="content-inicial" id="telaInicial">
+<!--     testes com nova aplicação -->
+			<h1>Gerador de valores aleatórios</h1>
+			<form id="form-add" class="mb-3">
+				<div class="input-group">
+					<input type="text" id="novo-valor" class="form-control" placeholder="Digite um valor">
+					<button type="submit" class="btn btn-primary">Adicionar</button>
+				</div>
+			</form>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Valor</th>
+						<th>Ações</th>
+					</tr>
+				</thead>
+				<tbody id="tabela-valores">
+
+				</tbody>
+			</table>
+<!--     testes com nova aplicação -->
 			<div class="infos">
 				<h1 class="content-tittle">Selecione o Tamanho da Faca:</h1>
 				<br />
@@ -79,6 +100,25 @@
 					<button class="btn-inspection" id="btn-start-inspection1" disabled>
 						Iniciar inspeção
 					</button>
+					<br/>
+					<br/>
+					<br/>
+					<div class="resultados">
+						<div>
+							<p class="results-a">CUP - A: </p>
+							<p class="results-b">BATIMENTO - A:</p>
+							<p class="results-a">TENSIONAMENTO: </p>
+							<p class="results-b">CUP - B: </p>
+							<p class="results-a">BATIMENTO - B:</p>
+						</div>
+						<div class="resultados-valores">
+							<span class="results-a" id="valor-atual">0</span><br/>
+							<span class="results-b" id="valor-atual">0</span><br/>
+							<span class="results-a" id="valor-atual">0</span><br/>
+							<span class="results-b" id="valor-atual">0</span><br/>
+							<span class="results-a" id="valor-atual">0</span><br/>
+						</div>
+					</div>
 				</div>
 				<div class="checkposition">
 					<input type="checkbox" id="sensor1" name="sensor1" value="sensor1">
@@ -202,11 +242,11 @@
 						<!-- Primeira coluna -->
 						<div class="column">
 							<div class="section">
-								<label for="nome">Resolução:</label>
+								<label for="nome">Rotação:</label>
 								<input type="text" id="nome" placeholder="Seu nome aqui">
 							</div>
 							<div class="section">
-								<label for="fone">Digite seu telefone:</label>
+								<label for="fone"></label>
 								<input type="tel" id="fone" placeholder="Seu telefone aqui">
 							</div>
 							<div class="section">
